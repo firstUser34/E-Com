@@ -1,3 +1,4 @@
+// App.jsx
 import { lazy, Suspense } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -6,10 +7,18 @@ import Footer from "./components/Footer/Footer";
 import Loader from "./components/Loader/Loader";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import EcoFriendlyLearningPage from "./components/Learning/EcoFriendlyLearningPage";
+import PopupComponent from './components/Popup/popupcontent'; // Import the Popup component
+// import PopupComponent from "./components/Popup/popupcontent";
+ import ChatbotInterface from "./components/ChatbotInterface/ChatbotInterface";
+
+
+
 const Home = lazy(() => import("./pages/Home"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Product = lazy(() => import("./pages/Product"));
+
 function App() {
   return (
     <Suspense fallback={<Loader />}>
@@ -26,12 +35,19 @@ function App() {
           theme="light"
         />
         <NavBar />
+        <PopupComponent /> {/* Add the Popup component here */}
+        <popup1/> 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/Learn" element={<EcoFriendlyLearningPage />} /> 
         </Routes>
+        <div className="App">
+      {/* Your other components */}
+      <ChatbotInterface />
+    </div>
         <Footer />
       </Router>
     </Suspense>
